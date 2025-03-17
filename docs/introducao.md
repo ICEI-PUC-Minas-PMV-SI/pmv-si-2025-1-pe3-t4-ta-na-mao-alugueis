@@ -17,8 +17,24 @@ O desenvolvimento desse sistema visa atender a uma demanda de mercado e promover
 
 ## 1.3. Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
+O tema central do nosso trabalho sendo "Economia Sustentável e Colaborativa" escolhemos esse tema visando a sustentabilidade econômica e evolutiva que é um tema central das discussões do planeta atualmente. Levando em consideração que quanto mais itens fabricados e deixamos subutilizados, menos recursos disponíveis teremos no futuro.  
+
+O "Tá na mão” é um sistema muito prático para quem está buscando uma renda extra alugando itens em geral. O software atenderia a um mercado amplo, abrangendo desde imóveis, veículos, equipamentos e até pessoas que estão buscando um emprego, itens do cotidiano, proporcionando uma experiência prática, segura e eficiente para todas as partes envolvidas.  
+
+Com o objetivo de ajudar pessoas que desejam iniciar investimentos sem dispor do capital total, oferecendo a possibilidade de alugar o bem e gerar rendimento. 
 
 ## 1.4. Público alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações hierárquicas, etc.
+O aplicativo é para empresas e pessoas físicas que querem alugar itens com segurança e praticidade. Os principais perfis são: 
+
+- Pessoas que buscam aluguéis temporário; 
+
+- Pequenas empresas que precisam de equipamentos para começar sem gastar muito; 
+
+- Empresas de locação que querem ampliar sua presença digital; 
+
+- Motoristas de aplicativos que não tem recursos para aderir um veículo próprio; 
+
+- Empresas de eventos que precisam de profissionais na área, de segurança etc. 
+
+Em termos gerais, todas as pessoas podem ser consideradas público-alvo, pois será um sistema que consegue ser útil e viável para todos.
