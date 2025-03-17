@@ -9,7 +9,11 @@ Descreva também o contexto em que essa aplicação será usada, se houver: empr
 
 ## 1.2. Objetivos do trabalho
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. O objetivo geral deve resumir e apresentar a ideia central de um trabalho, descrevendo também a sua finalidade. Os objetivos específicos darão uma maior delimitação ao tema, além de detalhar os processos necessários para a realização do trabalho.
+O objetivo deste trabalho é desenvolver um software que conecte locadores e locatários de forma eficiente e segura, promovendo uma plataforma intuitiva alinhada aos princípios da economia sustentável e colaborativa, otimizar o uso de bens materiais, permitindo que itens sejam compartilhados entre os usuários, reduzindo o desperdício e promovendo uma utilização mais eficiente dos recursos.  
+
+Para isso, pretende-se criar um sistema de perfis e avaliações para garantir a confiabilidade e segurança das transações, implementar a categorização de itens para facilitar a busca e a disponibilização de recursos sob demanda, desenvolver uma funcionalidade de mensagens para comunicação direta entre os usuários, integrar métodos de pagamento seguros para transações simples e protegidas, incentivar a economia circular permitindo que itens subutilizados gerem renda para seus proprietários, e criar uma solução escalável e sustentável, permitindo maior participação de pessoas e empresas no processo de locação e facilitando o acesso a bens sem a necessidade de aquisição total, promovendo uma geração de renda extra.  
+
+O desenvolvimento desse sistema visa atender a uma demanda de mercado e promover práticas mais sustentáveis e colaborativas, alinhadas à preservação dos recursos naturais e à evolução das economias locais.
 
 ## 1.3. Justificativa
 
