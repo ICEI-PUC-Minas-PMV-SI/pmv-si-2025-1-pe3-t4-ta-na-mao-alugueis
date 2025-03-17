@@ -6,20 +6,21 @@
 
 `SEMESTRE: 3º`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+O projeto "Tá na Mão" tem como objetivo desenvolver um aplicativo que centraliza e facilita o aluguel de itens diversos, conectando pessoas e empresas que possuem produtos disponíveis para locação com aquelas que necessitam alugá-los. Inspirado em plataformas de compra e venda, o sistema permitirá a criação de perfis, avaliações e comunicação direta entre os usuários, garantindo segurança e confiabilidade nas transações.
+
+A solução visa atender a uma demanda crescente por alternativas de consumo mais acessíveis e sustentáveis, promovendo a economia colaborativa e incentivando o melhor aproveitamento dos recursos. Com categorias organizadas e um sistema intuitivo, o "Tá na Mão" busca oferecer praticidade tanto para locadores quanto para locatários, permitindo que itens subutilizados gerem renda e facilitando o acesso a bens sem a necessidade de compra definitiva.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
-* Nome completo do aluno 5
-* Nome completo do aluno 6
+* João Paulo Candido Faria Vieira 
+* José Alexandre Santos Barbosa 
+* Luís Filipe Silva de Oliveira 
+* Sebastiao Felipe de Oliveira Barros 
+* Vitor Casimiro Madureira Souza 
 
 ## Orientador
 
-* Nome completo do professor 
+* Fábio Martins de Oliveira
 
 # Planejamento
 
