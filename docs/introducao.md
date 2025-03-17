@@ -37,4 +37,4 @@ O aplicativo é para empresas e pessoas físicas que querem alugar itens com seg
 
 - Empresas de eventos que precisam de profissionais na área, de segurança etc. 
 
- Em termos gerais, todas as pessoas podem ser consideradas público-alvo, pois será um sistema que consegue ser útil e viável para todos.
+  Em termos gerais, todas as pessoas podem ser consideradas público-alvo, pois será um sistema que consegue ser útil e viável para todos.
