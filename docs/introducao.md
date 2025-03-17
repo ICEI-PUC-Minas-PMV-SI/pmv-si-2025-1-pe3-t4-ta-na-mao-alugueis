@@ -1,12 +1,13 @@
 # 1. INTRODUÇÃO
 
-Contextualizar a área de pesquisa do trabalho, apresentando conceitos e dados relacionados antes de apresentar a problemática a ser investigada.
+O projeto “Tá na Mão” tem o objetivo de desenvolver um aplicativo para centralizar e facilitar aluguéis, conectando usuários que possuem itens para locação com aqueles que necessitam alugá-los. Seguindo o modelo de anúncios de plataformas digitais de vendas, o sistema permitirá perfis de usuários, avaliações e comunicação direta entre as partes para garantir a confiabilidade das locações. 
+
 
 ## 1.1. Problema
 
-Nesse momento você deve apresentar o problema que a sua aplicação deve resolver. No entanto, não é a hora de comentar sobre a aplicação. 
-Descreva também o contexto em que essa aplicação será usada, se houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de fato existir, pois ainda não é a hora de apresentar requisitos detalhados ou projetos.
+O projeto que estamos desenvolvendo visa solucionar a crescente demanda por soluções de consumo mais acessíveis e sustentáveis. O mercado atual de compras e vendas online está saturado com plataformas como a OLX, que se concentram principalmente na venda de itens novos ou usados. No entanto, muitas vezes as pessoas não têm a necessidade de adquirir um produto permanentemente, mas sim de utilizá-lo por um curto período. Essa necessidade de locação, seja por economia, praticidade ou sustentabilidade, ainda é pouco explorada em plataformas tradicionais. 
 
+Nosso site, portanto, surge para atender a esse público que busca alugar itens do dia a dia de forma prática e segura. A ideia é oferecer uma alternativa para quem precisa de produtos por um tempo limitado, como ferramentas, equipamentos de lazer, móveis, utensílios domésticos e até mesmo produtos sazonais, como fantasias ou artigos para eventos específicos. 
 ## 1.2. Objetivos do trabalho
 
 O objetivo deste trabalho é desenvolver um software que conecte locadores e locatários de forma eficiente e segura, promovendo uma plataforma intuitiva alinhada aos princípios da economia sustentável e colaborativa, otimizar o uso de bens materiais, permitindo que itens sejam compartilhados entre os usuários, reduzindo o desperdício e promovendo uma utilização mais eficiente dos recursos.  
