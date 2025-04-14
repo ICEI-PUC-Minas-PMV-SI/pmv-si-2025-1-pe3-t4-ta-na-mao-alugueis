@@ -22,46 +22,17 @@ Dessa forma, o foco do "Tá na Mão" permanece na criação de uma experiência 
 
 ### 3.2.4 Benefícios do produto
 
+| # | Benefício | Valor para o Cliente |
+|--------------------|------------------------------------|----------------------------------------|
+|1	| Economia de dinheiro.  |	Já que poderão alugar somente pelo tempo necessário ao invés de comprar.  |
+|2 | Acessibilidade a Produtos de Custo Alto.  | Também pelo fato de serem alugados e não comprados.  | 
+|3 | Facilidade de Acesso | A plataforma torna o processo mais rápido e conveniente do que procurar localmente.  | 
+|4	| Desapego temporário.	| O poder de lucrar em cima de algo que você não está utilizando no momento, mas não quer se desfazer. | 
+|5	| Segurança	| O termo comum para alugar informalmente é “emprestar”. Com nosso site, qualquer usuário poderá alugar seus itens de maneira segura e confiável. | 
+|6	| Flexibilidade na Definição de Condições de Uso.	| O anunciante pode estabelecer condições específicas para o aluguel. | 
+|7	| Faça o seu perfil. 	| Permite uma personalização do seu perfil dentro do site. | 
+|8	| Troque mensagens com o locador e/ou locatário de seus itens.	| O sistema permitirá a troca de mensagens da pessoa proprietária do item a ser alugado, com quem pretende alugar. | 
 
-# 
-
-Benefício
-Valor para o Cliente 
-
-1 
-Economia de dinheiro. 
-Já que poderão alugar somente pelo tempo necessário ao invés de comprar. 
-
-2 
-Acessibilidade a Produtos de Custo Alto. 
-Também pelo fato de serem alugados e não comprados. 
-
-3 
-Facilidade de Acesso 
-A plataforma torna o processo mais rápido e conveniente do que procurar localmente. 
-
-4 
-Desapego temporário. 
-O poder de lucrar em cima de algo que você não está utilizando no momento, mas não quer se desfazer. 
-
-5 
-Segurança 
-O termo comum para alugar informalmente é “emprestar”. Com nosso site, qualquer usuário poderá alugar seus itens de maneira segura e confiável. 
-
-6 
-Flexibilidade na Definição de Condições de Uso 
-O anunciante pode estabelecer condições específicas para o aluguel. 
-
- 
-
-7 
-Faça o seu perfil. 
-Permite uma personalização do seu perfil dentro do site. 
-
- 
-8 
-Troque mensagens com o locador e/ou locatário de seus itens. 
-O sistema permitirá a troca de mensagens da pessoa proprietária do item a ser alugado, com quem pretende alugar.  
 
 
 ## 3.3 Descrição geral do produto
