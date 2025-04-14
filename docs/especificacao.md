@@ -94,6 +94,8 @@ Dessa forma, o foco do "Tá na Mão" permanece na criação de uma experiência 
 Um diagrama de casos de uso é uma representação visual que descreve as interações entre os atores (usuários ou sistemas externos) e o sistema em desenvolvimento. 
 
 Figura 1: 
+![Image](https://github.com/user-attachments/assets/acc9115b-390d-43b9-aed8-9d020f56c0cd)
+
 ### 3.4.2 Descrições de Casos de Uso
 
  
