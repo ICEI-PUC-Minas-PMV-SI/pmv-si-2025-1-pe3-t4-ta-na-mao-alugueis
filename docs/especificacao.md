@@ -40,156 +40,52 @@ Dessa forma, o foco do "Tá na Mão" permanece na criação de uma experiência 
 ### 3.3.1 Requisitos Funcionais
 
  
-
+| Código | Requisito Funcional (Funcionalidade) | Descrição |
+|--------------------|------------------------------------|----------------------------------------|
+| RF1 | Cadastrar Usuário  |	Permitir o cadastro do usuário com informações pessoais  |
+| RF2 | Realizar login 	| Permitir que o usuário faça login no sistema  |
+| RF3	| Realizar logout |	Permitir que o usuário faça logout do sistema.  |
+| RF4 |	Gerenciar Perfil de Usuário	| Permitir que o usuário visualize, edite ou exclua seus dados pessoais.  |
+| RF5 |	Gerenciar Usuário	| O sistema deve permitir que o administrador gerencie os usuários do sistema. |
+| RF6 |	Denunciar Usuário	| Permitir que o usuário denuncie outros usuários que descumprirem os termos da transação. |
+| RF7 |	Gerenciar Anúncio	| Permitir que o usuário edite, promova ou exclua seus anúncios ativos.  |
+| RF8 |	Visualizar Anúncio	| Exibir os detalhes de um anúncio selecionado, incluindo fotos, descrição e dados do anunciante. |
+| RF9 |	Favoritar Anúncio	| Permitir que o usuário adicione anúncios à sua lista de favoritos.  |
+| RF10 |	Compartilhar Anúncio	| Permitir que os usuários compartilhem anúncios nas redes sociais.  |
+| RF11 |	Enviar Mensagens a Usuários	| Disponibilizar um sistema de mensagens para conversas entre locador e locatário.y |
+| RF12 | Realizar Locação 	| Permitir que o locatário solicite a locação de um item.  |
+| RF13 |	Cadastrar Anúncio	| Permitir que o usuário crie um novo anúncio com título, descrição, imagens e informações relevantes. |
+| RF14 |	Avaliar Locação	| Permitir que locadores e locatários avaliem a experiência de locação após a devolução do item. A avaliação será composta por uma nota de 1 a 5 estrelas e um campo de texto para que o usuário descreva sua experiência com a locação. |
+| RF15 |	Emitir Relatórios de Locação	| Permitir que o usuário realize o download de relatórios contendo informações sobre locações e empréstimos. |
+| RF16 |	Pesquisar Itens para Locação	| Permitir que o usuário pesquise por itens disponíveis para locação utilizando filtros como categoria, preço, localização, data de disponibilidade e palavras-chave. |
+| RF17 |	Realizar Pagamento	| O Sistema deve permitir que o locatário realize o pagamento da locação ao locador. |
  
-
-Código 
-
-Funcionalidade 
-
-Descrição 
-
-RF1 
-Cadastrar Usuário 
-Permitir o cadastro do usuário com informações pessoais 
-
-RF2 
-Realizar login 
-Permitir que o usuário faça login no sistema 
-
-RF3 
-Realizar logout 
-Permitir que o usuário faça logout do sistema. 
-
-RF4 
-Gerenciar Perfil de Usuário 
-Permitir que o usuário visualize, edite ou exclua seus dados pessoais. 
-
-RF5 
-Gerenciar Usuário 
-O sistema deve permitir que o administrador gerencie os usuários do sistema. 
-
-RF6 
-Denunciar Usuário 
-Permitir que o usuário denuncie outros usuários que descumprirem os termos da transação. 
-
-RF7 
-Gerenciar Anúncio 
-Permitir que o usuário edite, promova ou exclua seus anúncios ativos. 
-
-RF8 
-Visualizar Anúncio 
-Exibir os detalhes de um anúncio selecionado, incluindo fotos, descrição e dados do anunciante. 
-
-RF9 
-Favoritar Anúncio 
-Permitir que o usuário adicione anúncios à sua lista de favoritos. 
-
-RF10 
-Compartilhar Anúncio 
-Permitir que os usuários compartilhem anúncios nas redes sociais. 
-
-RF11 
-Enviar Mensagens a Usuários 
-Disponibilizar um sistema de mensagens para conversas entre locador e locatário. 
-
-RF12 
-Realizar Locação 
-Permitir que o locatário solicite a locação de um item. 
-
-RF13 
-Cadastrar Anúncio 
-Permitir que o usuário crie um novo anúncio com título, descrição, imagens e informações relevantes. 
-
-RF14 
-Avaliar Locação 
-Permitir que locadores e locatários avaliem a experiência de locação após a devolução do item. A avaliação será composta por uma nota de 1 a 5 estrelas e um campo de texto para que o usuário descreva sua experiência com a locação. 
-
-RF15 
-Emitir Relatórios de Locação 
-Permitir que o usuário realize o download de relatórios contendo informações sobre locações e empréstimos. 
-
- 
-
-RF16 
-Pesquisar Itens para Locação 
-Permitir que o usuário pesquise por itens disponíveis para locação utilizando filtros como categoria, preço, localização, data de disponibilidade e palavras-chave. 
-
-RF17 
-Realizar Pagamento 
-O Sistema deve permitir que o locatário realize o pagamento da locação ao locador. 
-
 
 
 ### 3.3.2 Requisitos Não Funcionais
  
+| Código | Requisito Não Funcional (Restrição) | Descrição |
+|--------------------|---------------------------|----------------------------|
+| RNF1 | Ambiente | O sistema deve ser responsivo e acessível via dispositivos móveis e desktop.|
+| RNF2 | Desempenho | O tempo de resposta das buscas não deve ultrapassar 3 segundos. |
+| RNF3 |	Segurança | O produto deve restringir o acesso por meio de senhas individuais para o usuário. |
+| RNF4 |	Acessibilidade | O sistema deve ser compatível com leitores de tela para usuários com deficiências visuais. |
+| RNF5 |	Auditoria | Todos os aluguéis devem ser registrados para fins de auditoria e segurança. |
+| RNF6 | Backup e Recuperação  | O sistema deve realizar backups automáticos periódicos e permitir a recuperação de dados em caso de falha. |
+| RNF7 | Escalabilidade | O sistema deve ser escalável, garantindo a capacidade de expansão do banco de dados conforme o aumento do número de usuários e de sua utilização.   |
+| RNF8 |	Conformidade Legal  | O sistema deve cumprir todas as leis e regulamentos aplicáveis ao aluguel de bens entre pessoas físicas e jurídicas. |
+| RNF9 |	Compatibilidade | O sistema deve ser compatível com os principais navegadores modernos e sistemas operacionais. |
+| RNF10 |	Confiabilidade | O sistema deverá estar sempre ativo, e apresentar backups regulares. |
 
-Código  
-
-Restrição 
-
-Descrição 
-
-RNF1 
-Ambiente 
-O sistema deve ser responsivo e acessível via dispositivos móveis e desktop. 
-
-RNF2 
-Desempenho 
-O tempo de resposta das buscas não deve ultrapassar 3 segundos. 
-
-RNF3 
-Segurança 
-O produto deve restringir o acesso por meio de senhas individuais para o usuário. 
-
-RNF4 
-Acessibilidade 
-O sistema deve ser compatível com leitores de tela para usuários com deficiências visuais. 
-
-RNF5 
-Auditoria 
-Todos os aluguéis devem ser registrados para fins de auditoria e segurança. 
-
-RNF6 
-Backup e Recuperação 
-O sistema deve realizar backups automáticos periódicos e permitir a recuperação de dados em caso de falha 
-
-RNF7 
-Escalabilidade 
-O sistema deve ser escalável, garantindo a capacidade de expansão do banco de dados conforme o aumento do número de usuários e de sua utilização.  
-
-RNF8 
-Conformidade Legal 
-O sistema deve cumprir todas as leis e regulamentos aplicáveis ao aluguel de bens entre pessoas físicas e jurídicas 
-
-RNF9 
-Compatibilidade 
-O sistema deve ser compatível com os principais navegadores modernos e sistemas operacionais 
-
-RNF10 
-Confiabilidade  
-O sistema deverá estar sempre ativo, e apresentar backups regulares. 
 
 
 ### 3.3.3 Usuários 
 
-Descrição 
-
-# 
-Ator 
-Definição 
-
-1 
-Administrador 
-Usuário responsável pela gestão do sistema. Possui acesso privilegiado a relatórios gerenciais e dados não sigilosos de todos os usuários, permitindo a supervisão e manutenção da plataforma. 
-
-2 
-Locador (Perfil Empresarial) 
-Usuário empresarial que disponibiliza produtos para aluguel. Pode criar, editar e excluir anúncios, além de gerenciar reservas e avaliar locatários. No entanto, esse perfil não pode alugar produtos de outros usuários. 
-
-3 
-Locador/Locatário (Pessoa Física) 
-Usuário individual que pode tanto disponibilizar produtos para aluguel quanto alugar produtos de outros usuários. 
+| Ator | Descrição |
+|--------------------|------------------------------------|
+| Administrador  |	Usuário responsável pela gestão do sistema. Possui acesso privilegiado a relatórios gerenciais e dados não sigilosos de todos os usuários, permitindo a supervisão e manutenção da plataforma.  |
+| Locador (Perfil Empresarial)  |	Usuário empresarial que disponibiliza produtos para aluguel. Pode criar, editar e excluir anúncios, além de gerenciar reservas e avaliar locatários. No entanto, esse perfil não pode alugar produtos de outros usuários.  |
+| Locador/Locatário (Pessoa Física) |	Usuário individual que pode tanto disponibilizar produtos para aluguel quanto alugar produtos de outros usuários.  |
 
 
 ## 3.4 Modelagem do Sistema
