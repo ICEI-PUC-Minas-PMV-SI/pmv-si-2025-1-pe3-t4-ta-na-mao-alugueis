@@ -430,12 +430,6 @@ Fluxo Alternativo (1): Tentativa de Denúncia Sem Transação Associada
 
 Caso o usuário tente denunciar alguém com quem não teve transação registrada, o sistema impede a denúncia e exibe uma mensagem explicativa. 
 
-Texto. 
-
-Texto. 
-
-Texto. 
-
  
 
 Pós-condições: A denúncia é registrada no sistema, vinculada à transação e ao usuário denunciado, e estará disponível para análise pelo usuário administrador. 
@@ -940,7 +934,7 @@ A Figura 2 mostra o diagrama de classes do sistema. A Matrícula deve conter a i
 
 #### Figura 2: Diagrama de Classes do Sistema.
  
-![image](https://github.com/user-attachments/assets/abc7591a-b46f-4ea2-b8f0-c116b60eb24e)
+![Image](https://github.com/user-attachments/assets/d41c5a96-7a22-43a6-a858-5efd84ffcedb)
 
 
 ### 3.4.4 Descrições das Classes 
