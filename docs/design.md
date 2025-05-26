@@ -2,6 +2,7 @@
 
 ## 4.1 Personas
 Nesta seção você deve detalhar as personas do seu projeto. Deve-se documentar uma persona por integrante do projeto. Sugere-se a utilização do gerador de personas disponibilizado ao final da página https://www.rdstation.com/blog/marketing/persona-o-que-e/.
+
 ![Persona1](https://github.com/user-attachments/assets/d0b29322-a12a-453c-9edd-103f5ec32930)
 
 ![Persona2](https://github.com/user-attachments/assets/5ac63493-7a7b-44a1-9b56-4871f010e83e)
@@ -12,6 +13,7 @@ Nesta seção você deve detalhar as personas do seu projeto. Deve-se documentar
 
 ## 4.2 Mapa de Empatia
 Mapa da Empatia é um material utilizado para conhecer melhor o seu cliente. A partir do mapa da empatia é possível detalhar a personalidade do cliente e compreendê-la melhor. O objetivo é obter um nível mais profundo de compreensão de uma persona. A seguir um exemplo de template que pode ser usado para o mapa de empatia. Para cada persona deverá ser apresentado o seu respectivo mapa de empatia. Sugere-se a utilização do template apresentado em https://www.rdstation.com/blog/marketing/mapa-da-empatia/.
+
 ![Mapa de empatia 1](https://github.com/user-attachments/assets/a39d70c2-dee0-421a-a787-aebef082dc4f)
 
 ![Mapa de empatia 2](https://github.com/user-attachments/assets/76bfa3f0-9083-459c-b79f-d5744d124dc8)
