@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tá na Mão</title>
+    <link rel="icon" href="https://i.ibb.co/tp2q7J2G/imagem-2025-06-02-153413774.png" type="image/png">
+    <link rel="stylesheet" href="./style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+    <style>
+        /* --- Estilos da Página de Criar Anúncio --- */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+            background-color: #4cd64e;
+            box-sizing: border-box;
+            flex-grow: 1;
+        }
+
+        .create-ad-page-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .create-ad-page-container h2 {
+            font-size: 2em;
+            color: #333;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .ad-creation-form {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .form-section {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-section h3 {
+            font-size: 1.3em;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+            color: #333;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="number"]:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-group.price-group {
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group.price-group label {
+            flex-shrink: 0;
+            margin-bottom: 0;
+        }
+
+        .form-group.price-group input {
+            flex-grow: 1;
+        }
+
+        .form-group.price-group select {
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        .image-upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s, background-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            min-height: 150px;
+        }
+
+        .image-upload-area:hover {
+            border-color: #007bff;
+            background-color: #f5faff;
+        }
+
+        .upload-button-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1em;
+            color: #007bff;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .upload-button-label svg {
+            width: 24px;
+            height: 24px;
+            fill: #007bff;
+        }
+
+        .image-previews {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .image-preview-item {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-preview-item .remove-image-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(255, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .form-actions button {
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+
+        .primary-button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+        }
+
+        .primary-button:hover {
+            background-color: #218838;
+            box-shadow: 0 3px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .secondary-button {
+            background-color: #f0f0f0;
+            color: #555;
+            border: 1px solid #ddd;
+        }
+
+        .secondary-button:hover {
+            background-color: #e0e0e0;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cancel-button {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+        }
+
+        .cancel-button:hover {
+            background-color: #c82333;
+            box-shadow: 0 3px 8px rgba(220, 53, 69, 0.3);
+        }
+
+        /* --- Estilos para a Prévia do Anúncio --- */
+        #ad-preview-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            box-sizing: border-box;
+            margin-top: 30px;
+        }
+
+        #ad-preview-container h2 {
+            font-size: 1.8em;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .card-container {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 15px;
+            max-width: 300px;
+            margin: 20px auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-container h4 {
+            font-size: 1.5em;
+            color: #28a745;
+            margin: 10px 0 5px;
+            font-weight: 700;
+        }
+
+        .card-container h5 {
+            font-size: 1.1em;
+            color: #333;
+            margin: 0 0 8px;
+            font-weight: 600;
+        }
+
+        .card-container .location,
+        .card-container .date {
+            font-size: 0.85em;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        /* --- Estilos do Modal --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content h2 {
+            color: #28a745;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .modal-content p {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .close-button {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .modal-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Animação para o modal */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Responsividade --- */
+        @media (max-width: 768px) {
+            main {
+                padding: 20px 10px;
+            }
+
+            .create-ad-page-container {
+                padding: 20px;
+            }
+
+            .create-ad-page-container h2 {
+                font-size: 1.7em;
+                margin-bottom: 25px;
+            }
+
+            .form-section {
+                padding: 15px;
+            }
+
+            .form-section h3 {
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .form-group.price-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .form-group.price-group input,
+            .form-group.price-group select {
+                width: 100%;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .form-actions button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .form-actions button:last-child {
+                margin-bottom: 0;
+            }
+
+            /* Responsividade da Prévia */
+            #ad-preview-container {
+                padding: 20px;
+            }
+
+            .card-container {
+                max-width: 100%;
+            }
+
+            /* Responsividade do Modal */
+            .modal-content {
+                padding: 20px;
+                margin: 10% auto;
+            }
+
+            .modal-content h2 {
+                font-size: 1.5em;
+            }
+
+            .modal-content p {
+                font-size: 1em;
+            }
+
+            .close-button {
+                font-size: 24px;
+                top: 5px;
+                right: 15px;
+            }
+
+            .modal-button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .create-ad-page-container {
+                padding: 15px;
+            }
+
+            .create-ad-page-container h2 {
+                font-size: 1.5em;
+            }
+
+            .form-section {
+                padding: 10px;
+                gap: 15px;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 10px 12px;
+                font-size: 0.95em;
+            }
+
+            .image-upload-area {
+                min-height: 120px;
+                padding: 15px;
+            }
+
+            .upload-button-label {
+                font-size: 0.9em;
+            }
+
+            .upload-button-label svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .image-preview-item {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+
+<body>
+    <header>
+        <div class="barra-superior-padrao">
+            <div class="logo">
+                <a href="page-principal.html">
+                    <img src="https://i.ibb.co/VYCg7qC1/imagem-2025-06-02-153413774.png" alt="Logo Tá na Mão" class="imagem-responsiva" width="100">
+                </a>
+            </div>
+
+            <div class="barra-de-pesquisa">
+                <input type="text" id="search-input" placeholder='Buscar "Carro"' autocomplete="off" />
+                <button> Buscar</button>
+                <div id="suggestions-container">
+                    <ul id="suggestions-list">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="botoes-de-navegacao">
+                <button id="plano-profissional-button"> Plano Profissional</button>
+                <button id="meus-anuncios-button"> Meus Anúncios</button>
+                <button id="chat-button"> Chat</button>
+                <button id="notificacoes-button"> Notificações</button>
+
+                <div class="botao-de-usuario">
+                    <button id="user-login-button">Usuário ⌄</button>
+                </div>
+
+                <div class="botao-de-anuncio">
+                    <button id="anunciar-button"> Anunciar grátis!</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal - O que deve ser alterado -->
+    <main>
+        <div class="create-ad-page-container">
+            <h2>Criar Novo Anúncio</h2>
+            <form class="ad-creation-form" id="adForm">
+
+                <div class="form-section">
+                    <h3>Informações Essenciais</h3>
+                    <div class="form-group">
+                        <label for="ad-title">Título do Anúncio</label>
+                        <input type="text" id="ad-title" placeholder="Ex: Furadeira Bosch 12V, Bicicleta Caloi Aro 29"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ad-description">Descrição Detalhada</label>
+                        <textarea id="ad-description" rows="6"
+                            placeholder="Descreva seu item ou serviço em detalhes, incluindo condições, características e o que o torna especial."
+                            required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="ad-category">Categoria</label>
+                        <select id="ad-category" required>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="autos">Autos</option>
+                            <option value="ferramentas">Ferramentas</option>
+                            <option value="imoveis">Imóveis</option>
+                            <option value="eletro">Eletro</option>
+                            <option value="decoracoes">Decorações de Festa</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Foto do Anúncio</h3>
+                    <div class="form-group">
+                        <label for="ad-images">Adicione a foto do seu anúncio (máx. 5MB)</label>
+                        <div class="image-upload-area">
+                            <input type="file" id="ad-images" accept="image/*" multiple style="display: none;">
+                            <label for="ad-images" class="upload-button-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.5-7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Clique ou arraste para adicionar sua foto
+                            </label>
+                            <div id="image-previews" class="image-previews">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Definições de Preço e Localização</h3>
+                    <div class="form-group price-group">
+                        <label for="ad-price">Preço</label>
+                        <input type="number" id="ad-price" placeholder="0,00" min="0.01" step="0.01" required>
+                        <select id="price-unit" required>
+                            <option value="/dia">/ dia</option>
+                            <option value="/semana">/ semana</option>
+                            <option value="/mês">/ mês</option>
+                            <option value="/hora">/ hora</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ad-location">Localização do Item</label>
+                        <input type="text" id="ad-location" placeholder="Ex: Montes Claros - MG" required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+
+                    <button type="button" class="cancel-button" id="cancelButton">Cancelar</button>
+                    <button type="submit" class="primary-button">Publicar Anúncio</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div id="ad-preview-container">
+            <h2>Prévia do Anúncio</h2>
+            <div id="ad-preview-card">
+                </div>
+        </div>
+
+        <div id="successModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Anúncio Enviado para Análise!</h2>
+                <p>Seu anúncio foi enviado com sucesso e está aguardando análise. Ele será publicado em até 24 horas.</p>
+                <p>Agradecemos a sua contribuição!</p>
+                <button class="modal-button">Fechar</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="barra-inferior-padrao">
+                <div class="footer-container">
+                    <div class="footer-section">
+                      <div class="footer-section footer-navigation"> <h4>Navegação</h4>
+                          <ul>
+                              <li><a href="plano-profissional.html">Plano Profissional</a></li>
+                              <li><a href="anuncio.html">Meus Anúncios</a></li>
+                              <li><a href="chat.html">Mensagens</a></li>
+                              <li><a href="notificacoes.html">Notificações</a></li>
+                              <li><a href="perfil.html">Meu Perfil</a></li>
+                              <li><a href="anuncio.html">Anunciar Grátis</a></li>
+                          </ul>
+                      </div>
+                  </div>
+                    <div class="footer-section">
+                        <h3>Tá na Mão</h3>
+                        <p>
+                          Sua plataforma para anunciar e encontrar serviços com facilidade. Junte-se à nossa comunidade!
+                        </p>
+                      </div>
+                    <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                      <li><p>Email: contato@tanamao.com.br</p></li>
+                      <li><p>Telefone: (31) 99999-8888</p></li>
+                      <li><p>Endereço: Rua do Exemplo, 1234 - Bairro Teste, Cidade - MG, Brasil</p></li>
+                      <li> <p>Seg-Sex: 9h às 18h</p></li>
+                    </ul>
+                  </div>
+                </div>
+                </footer>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const adTitleInput = document.getElementById('ad-title');
+            const adDescriptionInput = document.getElementById('ad-description');
+            const adPriceInput = document.getElementById('ad-price');
+            const priceUnitSelect = document.getElementById('price-unit');
+            const adLocationInput = document.getElementById('ad-location');
+            const adImagesInput = document.getElementById('ad-images');
+            const imagePreviewsContainer = document.getElementById('image-previews');
+            const adPreviewCard = document.getElementById('ad-preview-card');
+
+            // Elementos do Modal
+            const successModal = document.getElementById('successModal');
+            const closeModalButton = successModal.querySelector('.close-button');
+            const modalConfirmButton = successModal.querySelector('.modal-button');
+            const adForm = document.getElementById('adForm'); // Pegando o formulário pelo ID
+            const cancelButton = document.getElementById('cancelButton');
+
+            // Funções auxiliares
+            function formatCurrency(value) {
+                return parseFloat(value).toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                });
+            }
+
+            function getCurrentDate() {
+                const now = new Date();
+                const day = String(now.getDate()).padStart(2, '0');
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                const year = now.getFullYear();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                return `${day}/${month}/${year}, ${hours}:${minutes}`;
+            }
+
+            // Função para atualizar a prévia do anúncio
+            function updateAdPreview() {
+                const title = adTitleInput.value || 'Título do Anúncio';
+                const description = adDescriptionInput.value || 'Descrição detalhada do seu anúncio...'; // NOVA LINHA: Captura a descrição
+                const price = adPriceInput.value ? formatCurrency(adPriceInput.value) : 'R$ 0,00';
+                const unit = priceUnitSelect.value || '';
+                const location = adLocationInput.value || 'Montes Claros - MG';
+                const date = getCurrentDate();
+
+                let imageUrl = 'https://via.placeholder.com/600x400?text=Sem+Imagem';
+                if (imagePreviewsContainer.children.length > 0) {
+                    const firstImageElement = imagePreviewsContainer.querySelector('img');
+                    if (firstImageElement) {
+                        imageUrl = firstImageElement.src;
+                    }
+                }
+            
+                const previewHTML = `
+                    <div class="card-container">
+                        <div class="card-image">
+                            <img src="${imageUrl}">
+                        </div>
+                        <h4>${price} ${unit}</h4>
+                        <h5>${title}</h5>
+                        <p class="card-description">${description}</p> <p class="location">${location}</p>
+                        <p class="date">${date}</p>
+                    </div>
+                `;
+                
+                adPreviewCard.innerHTML = previewHTML;
+            }
+
+            // Adiciona listeners para atualizar a prévia em tempo real
+            adTitleInput.addEventListener('input', updateAdPreview);
+            adDescriptionInput.addEventListener('input', updateAdPreview);
+            adPriceInput.addEventListener('input', updateAdPreview);
+            priceUnitSelect.addEventListener('change', updateAdPreview);
+            adLocationInput.addEventListener('input', updateAdPreview);
+
+            cancelButton.addEventListener('click', function() {
+                window.location.href = 'page-principal.html'; // Redireciona para a página principal
+            });
+
+
+            // Lógica para pré-visualização de imagens
+            adImagesInput.addEventListener('change', function (event) {
+                imagePreviewsContainer.innerHTML = ''; // Limpa prévias existentes
+                const files = event.target.files;
+                if (files.length > 0) {
+                    const filesToProcess = Array.from(files).slice(0, 5);
+
+                    filesToProcess.forEach(file => {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            const previewItem = document.createElement('div');
+                            previewItem.className = 'image-preview-item';
+                            previewItem.innerHTML = `
+                                <img src="${e.target.result}" alt="Prévia da imagem">
+                                <button class="remove-image-button">&times;</button>
+                            `;
+                            imagePreviewsContainer.appendChild(previewItem);
+
+                            // Adiciona funcionalidade para remover a imagem
+                            previewItem.querySelector('.remove-image-button').addEventListener('click', function () {
+                                previewItem.remove();
+                                // Re-atualiza a prévia se a primeira imagem for removida
+                                updateAdPreview();
+                            });
+                            updateAdPreview(); // Atualiza a prévia principal com a nova imagem
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                } else {
+                    updateAdPreview(); // Atualiza para o placeholder se não houver imagens
+                }
+            });
+
+            // Adiciona um listener para o formulário no evento submit
+            adForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // Impede o envio padrão do formulário
+
+                // Para demonstração, apenas exibe o modal
+                successModal.style.display = 'flex';
+                adForm.reset(); // Reseta o formulário
+                imagePreviewsContainer.innerHTML = ''; // Limpa as prévias das imagens
+                updateAdPreview(); // Atualiza a prévia para o estado inicial/placeholder
+
+            });
+
+            // Lógica para fechar o modal
+            closeModalButton.addEventListener('click', function () {
+                window.location.href = 'page-principal.html';
+            });
+
+            modalConfirmButton.addEventListener('click', function () {
+                window.location.href = 'page-principal.html';
+            });
+
+            // Fechar o modal clicando fora dele
+            window.addEventListener('click', function (event) {
+                if (event.target == successModal) {
+                    window.location.href = 'page-principal.html'; // Redireciona para a página principal
+                }
+            });
+
+
+            // Inicializa a prévia ao carregar a página
+            updateAdPreview();
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

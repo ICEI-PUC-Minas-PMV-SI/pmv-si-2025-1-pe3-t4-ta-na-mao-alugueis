@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tá na Mão</title>
+    <link rel="icon" href="https://i.ibb.co/tp2q7J2G/imagem-2025-06-02-153413774.png" type="image/png">
+    <link rel="stylesheet" href="./style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+    <style>
+        /* Estilos para a página de Planos */
+        .plans-page-content {
+            max-width: 1200px;
+            margin: 40px auto; /* Espaçamento superior/inferior e centralização */
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .plan-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 colunas, responsivo */
+            gap: 30px;
+            margin-bottom: 60px; /* Espaçamento antes da próxima seção */
+            justify-content: center; /* Centraliza os cards se houver menos de 3 */
+        }
+
+        .plan-card {
+            background-color: #F5F5F5;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 380px; /* Garante altura mínima para alinhamento */
+        }
+
+        .plan-card h3 {
+            font-size: 1.4em;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .plan-card .plan-details {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .plan-card .plan-price {
+            font-size: 1.8em;
+            color: #28a745; /* Cor verde para o preço */
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .plan-card .contract-button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 25px; /* Botão arredondado */
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            width: 100%; /* Botão ocupa a largura total do card */
+            max-width: 200px; /* Limita a largura máxima do botão */
+            margin-bottom: 25px; /* Espaçamento antes da descrição */
+        }
+
+        .plan-card .contract-button:hover {
+            background-color: #218838;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        }
+
+        .plan-card .plan-description {
+            font-size: 0.85em;
+            color: #888;
+            line-height: 1.6;
+            flex-grow: 1; /* Permite que a descrição ocupe o espaço restante */
+        }
+
+        /* Estilos para a seção "Deseja planos maiores?" */
+        .large-plans-section {
+            background-color: #e6ffe6; /* Fundo verde claro */
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .large-plans-content {
+            display: flex;
+            flex-wrap: wrap; /* Para quebrar a linha em telas pequenas */
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px; /* Espaçamento entre os elementos */
+        }
+
+        .large-plans-text {
+            flex-grow: 1;
+            text-align: left;
+            max-width: 70%; /* Limita a largura do texto para não esticar demais */
+        }
+
+        .logo-and-text {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .small-logo {
+            height: 40px; /* Tamanho da logo pequena */
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        .logo-description {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+
+        .contact-description {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .contact-button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            flex-shrink: 0; /* Impede que o botão encolha */
+        }
+
+        .contact-button:hover {
+            background-color: #218838;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        }
+
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .plans-page-content {
+                padding: 0 15px;
+                margin: 30px auto;
+            }
+            .plan-cards-container {
+                gap: 25px;
+            }
+            .plan-card {
+                padding: 25px;
+                min-height: auto; /* Permite que a altura se ajuste em telas menores */
+            }
+            .large-plans-content {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+            .large-plans-text {
+                max-width: 100%;
+            }
+            .logo-and-text {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .plans-page-content {
+                margin: 20px auto;
+            }
+            .plan-cards-container {
+                grid-template-columns: 1fr; /* Uma única coluna em telas muito pequenas */
+                gap: 20px;
+            }
+            .plan-card {
+                padding: 20px;
+            }
+            .plan-card h3 {
+                font-size: 1.3em;
+            }
+            .plan-card .plan-price {
+                font-size: 1.6em;
+            }
+            .contract-button, .contact-button {
+                width: 100%;
+                max-width: none;
+            }
+            .large-plans-section {
+                padding: 25px;
+            }
+        }
+    </style>
+
+<body>
+    <header>
+        <div class="barra-superior-padrao">
+            <div class="logo">
+                <a href="page-principal.html">
+                    <img src="https://i.ibb.co/VYCg7qC1/imagem-2025-06-02-153413774.png" alt="Logo Tá na Mão" class="imagem-responsiva" width="100">
+                </a>
+            </div>
+
+            <div class="barra-de-pesquisa">
+                <input type="text" id="search-input" placeholder='Buscar "Carro"' autocomplete="off" />
+                <button> Buscar</button>
+                <div id="suggestions-container">
+                    <ul id="suggestions-list">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="botoes-de-navegacao">
+                <button id="plano-profissional-button"> Plano Profissional</button>
+                <button id="meus-anuncios-button"> Meus Anúncios</button>
+                <button id="chat-button"> Chat</button>
+                <button id="notificacoes-button"> Notificações</button>
+
+                <div class="botao-de-usuario">
+                    <button id="user-login-button">Usuário ⌄</button>
+                </div>
+
+                <div class="botao-de-anuncio">
+                    <button id="anunciar-button"> Anunciar grátis!</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal - O que deve ser alterado -->
+    <main>
+        <div class="plans-page-content">
+            <div class="plan-cards-container">
+                <div class="plan-card">
+                    <h3>Plano Anúncios 20</h3>
+                    <p class="plan-details">20 anúncios</p>
+                    <h4 class="plan-price">R$ 30,00 / mês</h4>
+                    <button class="contract-button">Contratar agora</button>
+                    <p class="plan-description">Cada mês você pode inserir 20 anúncios em todas as categorias de aluguel. Assine via boleto ou cartão de crédito.</p>
+                </div>
+
+                <div class="plan-card">
+                    <h3>Plano Anúncios 40</h3>
+                    <p class="plan-details">40 anúncios</p>
+                    <h4 class="plan-price">R$ 40,00 / mês</h4>
+                    <button class="contract-button">Contratar agora</button>
+                    <p class="plan-description">Cada mês você pode inserir 40 anúncios em todas as categorias de aluguel. Assine via boleto ou cartão de crédito.</p>
+                </div>
+
+                <div class="plan-card">
+                    <h3>Plano Empresarial 200</h3>
+                    <p class="plan-details">200 anúncios</p>
+                    <h4 class="plan-price">R$ 100,00 / mês</h4>
+                    <button class="contract-button">Contratar agora</button>
+                    <p class="plan-description">Cada mês você pode inserir 200 anúncios em todas as categorias de aluguel. Assine via boleto ou cartão de crédito. Tenha sua empresa verificada e aumente a confiabilidade e número de aluguéis do seu negócio.</p>
+                </div>
+            </div>
+
+            <div class="large-plans-section">
+                <div class="large-plans-content">
+                    <div class="large-plans-text">
+                        <div class="logo-and-text">
+                            <img src="https://i.ibb.co/VYCg7qC1/imagem-2025-06-02-153413774.png" alt="Logo Tá na Mão" class="small-logo">
+                            <p class="logo-description">Deseja planos maiores?</p>
+                        </div>
+                        <p class="contact-description">Se você deseja planos maiores ou já é nosso cliente converse com nossa equipe de vendas.</p>
+                    </div>
+                    <button class="contact-button">Fale conosco</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="barra-inferior-padrao">
+                <div class="footer-container">
+                    <div class="footer-section">
+                      <div class="footer-section footer-navigation"> <h4>Navegação</h4>
+                          <ul>
+                              <li><a href="plano-profissional.html">Plano Profissional</a></li>
+                              <li><a href="anuncio.html">Meus Anúncios</a></li>
+                              <li><a href="chat.html">Mensagens</a></li>
+                              <li><a href="notificacoes.html">Notificações</a></li>
+                              <li><a href="perfil.html">Meu Perfil</a></li>
+                              <li><a href="anuncio.html">Anunciar Grátis</a></li>
+                          </ul>
+                      </div>
+                  </div>
+                    <div class="footer-section">
+                        <h3>Tá na Mão</h3>
+                        <p>
+                          Sua plataforma para anunciar e encontrar serviços com facilidade. Junte-se à nossa comunidade!
+                        </p>
+                      </div>
+                    <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                      <li><p>Email: contato@tanamao.com.br</p></li>
+                      <li><p>Telefone: (31) 99999-8888</p></li>
+                      <li><p>Endereço: Rua do Exemplo, 1234 - Bairro Teste, Cidade - MG, Brasil</p></li>
+                      <li> <p>Seg-Sex: 9h às 18h</p></li>
+                    </ul>
+                  </div>
+                </div>
+                </footer>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

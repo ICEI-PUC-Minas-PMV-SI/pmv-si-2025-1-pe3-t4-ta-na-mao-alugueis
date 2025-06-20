@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Tá Na Mão</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+    --primary-green: #4CAF50;
+    --dark-green: #388E3C;
+    --background-light: #fbf9f7;
+    --text-dark: #333;
+    --text-light: #f0f0f0;
+    --accent-blue: #0077cc;
+    --accent-blue-dark: #005fa3;
+    --error-red: #d32f2f;
+    --border-light: #ccc;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--primary-green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+.login-wrapper { /* Renomeado para .auth-wrapper ou mantido se for um padrão mais genérico */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.login-container { /* Renomeado para .auth-container ou .signup-container */
+    width: 100%;
+    max-width: 420px; /* Aumentado um pouco para acomodar mais campos */
+    padding: 40px;
+    background-color: var(--background-light);
+    box-shadow: 0 4px 20px var(--shadow-color);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.login-logo {
+    max-width: 150px;
+    margin-bottom: 25px;
+    height: auto;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="tel"], /* Adicionado para o campo de telefone */
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 0;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus, /* Adicionado */
+input[type="password"]:focus {
+    border-color: var(--accent-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.2);
+}
+
+/* Estilos para o botão de ver senha */
+.password-group {
+    position: relative; /* Para posicionar o span corretamente */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(calc(50% + 5px)); /* Ajusta a posição vertical */
+    cursor: pointer;
+    color: #888;
+    font-size: 0.9em;
+    user-select: none; /* Impede seleção de texto ao clicar */
+}
+
+.toggle-password:hover {
+    color: var(--accent-blue);
+}
+
+
+.login-button { /* Renomeado para .signup-button ou um nome mais genérico se for comum */
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary-green); /* Cor para o botão de cadastro */
+    color: var(--text-light);
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: 15px;
+}
+
+.login-button:hover {
+    background-color: var(--dark-green); /* Cor de hover para o botão de cadastro */
+    transform: translateY(-1px);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+.error-message {
+    color: var(--error-red);
+    margin-top: 5px; /* Ajustado para estar abaixo do input */
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: left; /* Alinhado à esquerda para erro por campo */
+    display: none; /* Escondido por padrão */
+}
+
+.links-adicionais {
+    margin-top: 25px;
+    display: flex; /* Mantido se for útil */
+    justify-content: center; /* Centralizado */
+    gap: 10px;
+    flex-wrap: wrap; /* Para responsividade */
+}
+
+.links-adicionais a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.links-adicionais a:hover {
+    text-decoration: underline;
+    color: var(--accent-blue-dark);
+}
+
+/* --- Estilos do Modal de Sucesso --- */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Fixo na tela */
+    z-index: 1000; /* Acima de tudo */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Habilita scroll se o conteúdo for muito grande */
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro semi-transparente */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+}
+
+.modal-content {
+    background-color: var(--background-light);
+    margin: 15% auto; /* Ajuste para centralizar verticalmente em browsers antigos */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px; /* Largura máxima do modal */
+    text-align: center;
+    position: relative; /* Para posicionar o botão de fechar */
+    animation: fadeIn 0.3s ease-out; /* Animação de entrada */
+}
+
+.modal-content h2 {
+    color: var(--primary-green); /* Cor verde para destaque de sucesso */
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.modal-content p {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.close-button {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+.modal-button {
+    background-color: var(--accent-blue);
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-button:hover {
+    background-color: var(--accent-blue-dark);
+}
+
+/* Animação para o modal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    .login-logo {
+        max-width: 120px;
+    }
+
+    /* Responsividade do Modal */
+    .modal-content {
+        padding: 20px;
+        margin: 10% auto;
+    }
+
+    .modal-content h2 {
+        font-size: 1.5em;
+    }
+
+    .modal-content p {
+        font-size: 1em;
+    }
+
+    .close-button {
+        font-size: 24px;
+        top: 5px;
+        right: 15px;
+    }
+
+    .modal-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="login-wrapper"> <div class="login-container"> <img src="https://i.ibb.co/VYCg7qC1/imagem-2025-06-02-153413774.png" alt="Logo Tá na Mão" class="login-logo" />
+        <p class="subtitle">Cadastre-se para aproveitar todos os recursos!</p>
+
+        <form id="signup-form"> <div class="input-group">
+                <label for="username">Nome de Usuário</label>
+                <input type="text" id="username" name="username" placeholder="Seu nome completo ou apelido" required />
+                <p class="error-message" id="usernameError"></p>
+            </div>
+            <div class="input-group">
+                <label for="phone">Telefone</label>
+                <input type="tel" id="phone" name="phone" placeholder="(xx) xxxxx-xxxx" required />
+                <p class="error-message" id="phoneError"></p>
+            </div>
+            <div class="input-group">
+                <label for="document">CPF ou CNPJ (Opcional)</label>
+                <input type="text" id="document" name="document" placeholder="Apenas números" />
+                <p class="error-message" id="documentError"></p>
+            </div>
+            <div class="input-group password-group"> <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Mínimo 6 caracteres" required />
+                <span class="toggle-password" id="togglePassword">Ver Senha</span>
+                <p class="error-message" id="passwordError"></p>
+            </div>
+            <div class="input-group password-group"> <label for="confirmPassword">Confirmar Senha</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirme sua senha" required />
+                <span class="toggle-password" id="toggleConfirmPassword">Ver Senha</span>
+                <p class="error-message" id="confirmPasswordError"></p>
+            </div>
+
+            <button type="submit" class="login-button">Cadastrar</button> <div class="links-adicionais">
+
+        </form>
+    </div>
+</div>
+
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Cadastro Realizado com Sucesso!</h2>
+        <p>Seja bem-vindo(a) ao Tá na Mão. Sua conta foi criada com sucesso!</p>
+        <button class="modal-button" id="modalConfirmButton">Tudo certo! Vamos lá?</button>
+    </div>
+</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const signupForm = document.getElementById('signup-form'); // ID alterado para signup-form
+    const usernameInput = document.getElementById('username');
+    const phoneInput = document.getElementById('phone');
+    const documentInput = document.getElementById('document'); // CPF/CNPJ opcional
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+    const togglePassword = document.getElementById('togglePassword');
+    const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+
+    // Elementos para mensagens de erro por campo
+    const usernameError = document.getElementById('usernameError');
+    const phoneError = document.getElementById('phoneError');
+    const documentError = document.getElementById('documentError');
+    const passwordError = document.getElementById('passwordError');
+    const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+    // Elementos do Modal
+    const successModal = document.getElementById('successModal');
+    const closeModalButton = successModal.querySelector('.close-button');
+    const modalConfirmButton = document.getElementById('modalConfirmButton'); // ID no botão do modal
+
+    // Função para alternar visibilidade da senha
+    function togglePasswordVisibility(inputElement, toggleElement) {
+        if (inputElement.type === 'password') {
+            inputElement.type = 'text';
+            toggleElement.textContent = 'Ocultar Senha';
+        } else {
+            inputElement.type = 'password';
+            toggleElement.textContent = 'Ver Senha';
+        }
+    }
+
+    // Listeners para alternar visibilidade da senha
+    togglePassword.addEventListener('click', function() {
+        togglePasswordVisibility(passwordInput, togglePassword);
+    });
+
+    toggleConfirmPassword.addEventListener('click', function() {
+        togglePasswordVisibility(confirmPasswordInput, toggleConfirmPassword);
+    });
+
+    // Função para formatar telefone (máscara)
+    phoneInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+        let formattedValue = '';
+
+        if (value.length > 0) {
+            formattedValue = '(' + value.substring(0, 2);
+            if (value.length > 2) {
+                formattedValue += ') ';
+                if (value.length > 7) { // Se for 9 dígitos (celular)
+                    formattedValue += value.substring(2, 7) + '-' + value.substring(7, 11);
+                } else { // Se for 8 dígitos (fixo) ou menos
+                    formattedValue += value.substring(2, 6) + '-' + value.substring(6, 10);
+                }
+            }
+        }
+        e.target.value = formattedValue.substring(0, 15); // Limita ao tamanho máximo de (XX) XXXXX-XXXX
+    });
+
+    // Função para validar o formulário
+    function validateForm() {
+        let isValid = true;
+
+        // Limpa mensagens de erro
+        usernameError.textContent = '';
+        phoneError.textContent = '';
+        documentError.textContent = '';
+        passwordError.textContent = '';
+        confirmPasswordError.textContent = '';
+        usernameError.style.display = 'none';
+        phoneError.style.display = 'none';
+        documentError.style.display = 'none';
+        passwordError.style.display = 'none';
+        confirmPasswordError.style.display = 'none';
+
+        // Validação Nome de Usuário
+        if (usernameInput.value.trim() === '') {
+            usernameError.textContent = 'Nome de usuário é obrigatório.';
+            usernameError.style.display = 'block';
+            isValid = false;
+        }
+
+        // Validação Telefone
+        // Verifica se o telefone tem o formato mínimo (XX) XXXXX-XXXX (14 ou 15 caracteres)
+        if (phoneInput.value.trim().replace(/\D/g, '').length < 10) { // Mínimo 10 dígitos para (DD)XXXX-XXXX
+            phoneError.textContent = 'Telefone inválido ou incompleto.';
+            phoneError.style.display = 'block';
+            isValid = false;
+        }
+
+        // Validação Senha
+        if (passwordInput.value.length < 6) {
+            passwordError.textContent = 'A senha deve ter no mínimo 6 caracteres.';
+            passwordError.style.display = 'block';
+            isValid = false;
+        }
+
+        // Validação Confirmar Senha
+        if (confirmPasswordInput.value === '') {
+            confirmPasswordError.textContent = 'Confirmação de senha é obrigatória.';
+            confirmPasswordError.style.display = 'block';
+            isValid = false;
+        } else if (passwordInput.value !== confirmPasswordInput.value) {
+            confirmPasswordError.textContent = 'As senhas não coincidem.';
+            confirmPasswordError.style.display = 'block';
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    // Listener para o envio do formulário
+    signupForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        if (validateForm()) {
+            // Em um cenário real, aqui você enviaria os dados para o seu backend.
+            // Exemplo de como coletar os dados:
+            const userData = {
+                username: usernameInput.value.trim(),
+                phone: phoneInput.value.replace(/\D/g, ''), // Envia apenas números
+                document: documentInput.value.replace(/\D/g, ''), // Envia apenas números (opcional)
+                password: passwordInput.value // Em um app real, enviaria a senha criptografada ou via HTTPS
+            };
+            console.log('Dados do usuário para cadastro:', userData);
+
+            // Simula um envio de sucesso e mostra o modal
+            successModal.style.display = 'flex'; // Exibe o modal
+            signupForm.reset(); // Opcional: Limpa o formulário após o "cadastro"
+        }
+    });
+
+    // Lógica para fechar o modal e redirecionar para page-principal.html
+    closeModalButton.addEventListener('click', function() {
+        window.location.href = 'page-principal.html';
+    });
+
+    modalConfirmButton.addEventListener('click', function() {
+        window.location.href = 'page-principal.html';
+    });
+
+    // Fechar o modal clicando fora dele e redirecionar
+    window.addEventListener('click', function(event) {
+        if (event.target == successModal) {
+            window.location.href = 'page-principal.html';
+        }
+    });
+});
+    </script>
+</body>
+</html>

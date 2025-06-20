@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tá na Mão</title>
+    <link rel="icon" href="https://i.ibb.co/tp2q7J2G/imagem-2025-06-02-153413774.png" type="image/png">
+    <link rel="stylesheet" href="./style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+    <style>
+        /* Estilos Gerais e de Layout do Anúncio */
+        .ad-main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            /* Ajuste de altura removido para melhor responsividade */
+            /* height: 680px; */
+        }
+    
+        .ad-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alterado de 'center' para 'flex-start' para alinhar melhor o conteúdo */
+            width: 80%;
+            /* Ajuste de altura removido */
+            /* height: 680px; */
+        }
+    
+        .ad-left-column {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Alinhado à esquerda para texto */
+            justify-content: flex-start; /* Alinhado ao topo */
+            width: 70%;
+            /* Ajuste de altura removido */
+            /* height: 680px; */
+            padding-right: 20px; /* Espaçamento entre as colunas */
+        }
+    
+        .ad-location {
+            width: 100%;
+            font-size: 16px;
+            font-weight: 400;
+            text-align: left;
+            margin-bottom: 10px; /* Adicionado margem inferior */
+        }
+    
+        .ad-image-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 480px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background-color: #eee; /* Fundo para quando a imagem não carrega */
+        }
+    
+        .ad-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    
+        .ad-title {
+            width: 100%;
+            font-size: 20px;
+            font-weight: 600; /* Mais destaque para o título */
+            text-align: left;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+    
+        .ad-description {
+            width: 100%;
+            font-size: 16px;
+            font-weight: 400;
+            text-align: justify;
+            color: #666666;
+            line-height: 1.5; /* Melhor leitura */
+        }
+    
+        .ad-right-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start; /* Alinhado à esquerda */
+            width: 30%;
+            /* Ajuste de altura removido */
+            /* height: 680px; */
+            padding-left: 20px; /* Espaçamento entre as colunas */
+        }
+    
+        .ad-date {
+            display: flex;
+            justify-content: flex-end; /* Alinhar à direita */
+            align-items: center;
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px; /* Espaço abaixo da data */
+        }
+    
+        .ad-date h5 {
+            width: 100%;
+            font-size: 14px; /* Tamanho um pouco menor para a data */
+            font-weight: 400;
+            text-align: right;
+            color: #999999;
+        }
+    
+        .ad-panels {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center; /* Centralizar os cards */
+            width: 100%;
+            height: 100%;
+            gap: 12px;
+        }
+    
+        .ad-card {
+            display: flex;
+            box-sizing: border-box;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%; /* Ocupa a largura total da coluna direita */
+            height: auto; /* Altura flexível */
+            padding: 24px;
+            gap: 15px; /* Reduzido o gap para melhor compactação */
+            border: 1px solid lightgray; /* Simplificado border-style: inset; */
+            border-radius: 8px; /* Borda mais arredondada */
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
+            background-color: #fff; /* Fundo branco para os cards */
+        }
+    
+        .ad-card h3,
+        .ad-card h5,
+        .ad-card h6 {
+            width: 100%;
+            text-align: start;
+            margin: 0;
+        }
+    
+        .ad-card h3 {
+            color: #333333;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+    
+        .ad-card h5 {
+            color: #666666;
+            font-size: 1em;
+        }
+    
+        .ad-card h6 {
+            color: #999999;
+            font-size: 0.9em;
+        }
+    
+        .ad-card h3:first-of-type {
+            color: #666666;
+            font-size: 1em;
+            font-weight: normal; /* "Aluguel:" não precisa ser tão forte */
+        }
+    
+        .ad-button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 12px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            width: 100%; /* Ocupa a largura total do card */
+            max-width: 250px; /* Aumentado max-width */
+            margin-top: 15px; /* Espaço acima do botão */
+        }
+    
+        .ad-button:hover {
+            background-color: #218838;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        }
+    
+        /* --- Estilos para os Modais (Proposta e Confirmação) --- */
+.modal {
+  
+    display: none; 
+    position: fixed; /* Fixa o modal na viewport */
+    z-index: 1000; /* Garante que o modal fique acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Overlay escuro */
+
+    /* Estas propriedades são para quando o modal for ATIVADO via JavaScript */
+    /* O JavaScript mudará o display para 'flex' explicitamente quando o modal for aberto */
+    justify-content: center;
+    align-items: center;
+}
+    
+        .modal-content {
+            background-color: #fefefe;
+            padding: 30px;
+            border: 1px solid #888;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            animation: fadeIn 0.3s ease-out; /* Animação de entrada */
+            max-height: 90vh; /* Limita a altura do modal a 90% da viewport */
+            overflow-y: auto; /* Adiciona scroll se o conteúdo exceder max-height */
+        }
+    
+        .modal-content h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+    
+        .modal-content .close-button {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+    
+        .modal-content .close-button:hover,
+        .modal-content .close-button:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    
+        .modal-form .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+    
+        .modal-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+    
+        .modal-form input[type="text"],
+        .modal-form input[type="number"],
+        .modal-form textarea {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+    
+        .modal-form input[type="text"]:focus,
+        .modal-form input[type="number"]:focus,
+        .modal-form textarea:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+    
+        .modal-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+    
+        .modal-form button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-top: 20px;
+            width: 100%;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+    
+        .modal-form button:hover {
+            background-color: #218838;
+            box-shadow: 0 3px 8px rgba(40, 167, 69, 0.3);
+        }
+    
+        /* Estilos específicos para o modal de confirmação */
+        #confirmationModal .modal-content {
+            text-align: center;
+        }
+    
+        #confirmationModal h2 {
+            color: #28a745;
+        }
+    
+        #confirmationModal p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 25px;
+        }
+    
+        #confirmationModal .modal-button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            width: auto;
+            min-width: 180px;
+        }
+    
+        #confirmationModal .modal-button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 3px 8px rgba(0, 123, 255, 0.3);
+        }
+    
+        /* Animação de entrada */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .ad-wrapper {
+                flex-direction: column;
+                width: 95%;
+                padding: 0;
+                align-items: center; /* Centralizar o wrapper em telas menores */
+            }
+            .ad-left-column, .ad-right-column {
+                width: 100%;
+                height: auto;
+                padding: 10px 0; /* Ajuste de padding */
+                align-items: center; /* Centralizar conteúdo das colunas */
+            }
+            .ad-image-container {
+                height: 300px;
+            }
+            .ad-date {
+                justify-content: center; /* Centralizar data em telas menores */
+                text-align: center;
+            }
+            .ad-date h5 {
+                text-align: center;
+            }
+            .ad-panels {
+                align-items: center;
+            }
+            .ad-card {
+                width: 95%;
+                padding: 15px;
+            }
+            .ad-button {
+                max-width: none;
+            }
+            .modal-content {
+                padding: 20px;
+                max-width: 95%;
+            }
+            .modal-content h2 {
+                font-size: 1.5em;
+            }
+            .modal-form button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
+    
+        @media (max-width: 480px) {
+            .ad-location, .ad-title, .ad-description, .ad-date h5 {
+                font-size: 14px;
+            }
+            .ad-card h3, .ad-card h5, .ad-card h6 {
+                font-size: 0.9em;
+            }
+            .ad-card h3:first-of-type {
+                font-size: 1em;
+            }
+            .ad-image-container {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="barra-superior-padrao">
+            <div class="logo">
+                <a href="page-principal.html">
+                    <img src="https://i.ibb.co/VYCg7qC1/imagem-2025-06-02-153413774.png" alt="Logo Tá na Mão"
+                        class="imagem-responsiva" width="100">
+                </a>
+            </div>
+
+            <div class="barra-de-pesquisa">
+                <input type="text" id="search-input" placeholder='Buscar "Carro"' autocomplete="off" />
+                <button> Buscar</button>
+                <div id="suggestions-container">
+                    <ul id="suggestions-list">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="botoes-de-navegacao">
+                <button id="plano-profissional-button"> Plano Profissional</button>
+                <button id="meus-anuncios-button"> Meus Anúncios</button>
+                <button id="chat-button"> Chat</button>
+                <button id="notificacoes-button"> Notificações</button>
+
+                <div class="botao-de-usuario">
+                    <button id="user-login-button">Usuário ⌄</button>
+                </div>
+
+                <div class="botao-de-anuncio">
+                    <button id="anunciar-button"> Anunciar grátis!</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal - O que deve ser alterado -->
+    <main class="ad-main">
+        <div class="ad-wrapper">
+            <div class="ad-left-column">
+                <h5 class="ad-location">
+                    Minas Gerais > <span>Belo Horizonte</span>
+                </h5>
+                <div class="ad-image-container">
+                    <img class="ad-image"
+                        src="https://images.pexels.com/photos/13409345/pexels-photo-13409345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                        alt="Moto Triumph Street 2014" />
+                </div>
+                <div>
+                    <h2 class="ad-title">Moto Triumph Street 2014</h2>
+                    <h3 class="ad-description">
+                        Alugue uma moto esportiva cheia de personalidade! A Street Triumph 2014 oferece uma pilotagem
+                        ágil, potente e confortável, perfeita para curtir a cidade ou pegar estrada. Com motor de 675
+                        ABS,
+                        ela entrega desempenho com estilo e segurança. Moto bem cuidada, revisões em dia. Pronta para
+                        sua próxima aventura!
+                    </h3>
+                </div>
+            </div>
+            <div class="ad-right-column">
+                <div class="ad-date">
+                    <h5>
+                        16/06 às 18:36 |
+                        <span>❤️ 🔗</span>
+                    </h5>
+                </div>
+                <div class="ad-panels">
+                    <div class="ad-card">
+                        <h3>Aluguel:</h3>
+                        <div class="ad-card">
+                            <span id="adPrice"><h2>R$ 180.00</h2></span>
+                            <span id="adPeriod"><h5>por semana.</h5></span>
+                        </div>
+                    <button class="ad-button" id="rentButton">Realizar Proposta!</button> </div>
+                    <div class="ad-card">
+                        <h3>Jorge Ben</h3>
+                        <h5>🏠 Belo Horizonte - MG</h5>
+                        <h6>Último acesso há 4 horas.</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div id="proposalModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeProposalModal">&times;</span>
+            <h2>Fazer Proposta de Aluguel</h2>
+            <form class="modal-form" id="proposalForm">
+                <div class="form-group">
+                    <label for="proposedPrice">Preço Proposto:</label>
+                    <input type="text" id="proposedPrice" name="proposedPrice" placeholder="Ex: R$ 150,00 por semana" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Sua Mensagem (Opcional):</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Olá! Tenho interesse em alugar. Poderíamos negociar o preço?"></textarea>
+                </div>
+                <button type="submit">Enviar Proposta</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeConfirmationModal">&times;</span>
+            <h2>Proposta Enviada com Sucesso!</h2>
+            <p>Sua proposta de aluguel foi enviada ao anunciante. Ele entrará em contato em breve.</p>
+            <button class="modal-button" id="viewMoreAdsButton">Ver mais anúncios</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class=" barra-inferior-padrao">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <div class="footer-section footer-navigation">
+                        <h4>Navegação</h4>
+                        <ul>
+                            <li><a href="plano-profissional.html">Plano Profissional</a></li>
+                            <li><a href="anuncio.html">Meus Anúncios</a></li>
+                            <li><a href="chat.html">Mensagens</a></li>
+                            <li><a href="notificacoes.html">Notificações</a></li>
+                            <li><a href="perfil.html">Meu Perfil</a></li>
+                            <li><a href="anuncio.html">Anunciar Grátis</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Tá na Mão</h3>
+                    <p>
+                        Sua plataforma para anunciar e encontrar serviços com facilidade. Junte-se à nossa
+                        comunidade!
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li>
+                            <p>Email: contato@tanamao.com.br</p>
+                        </li>
+                        <li>
+                            <p>Telefone: (31) 99999-8888</p>
+                        </li>
+                        <li>
+                            <p>Endereço: Rua do Exemplo, 1234 - Bairro Teste, Cidade - MG, Brasil</p>
+                        </li>
+                        <li>
+                            <p>Seg-Sex: 9h às 18h</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    </footer>
+   
+    <script>
+        // --- Lógica para os Modais (Botão Alugar) ---
+
+    // Seleciona o botão "Alugar"
+    const rentButton = document.getElementById('rentButton');
+
+// Seleciona os elementos do modal de proposta
+const proposalModal = document.getElementById('proposalModal');
+const closeProposalModalButton = document.getElementById('closeProposalModal');
+const proposalForm = document.getElementById('proposalForm');
+const proposedPriceInput = document.getElementById('proposedPrice');
+const adPriceElement = document.getElementById('adPrice'); // Elemento que exibe o preço no anúncio
+const adPeriodElement = document.getElementById('adPeriod'); // Elemento que exibe o período no anúncio
+const messageInput = document.getElementById('message'); // Campo de mensagem
+
+// Seleciona os elementos do modal de confirmação
+const confirmationModal = document.getElementById('confirmationModal');
+const closeConfirmationModalButton = document.getElementById('closeConfirmationModal');
+const viewMoreAdsButton = document.getElementById('viewMoreAdsButton');
+
+// Função para extrair e formatar o preço e período do anúncio
+function getAdPriceAndPeriod() {
+    const priceText = adPriceElement ? adPriceElement.textContent.trim() : 'R$ 0,00';
+    // Ajuste para pegar o texto do período sem o ponto final, usando uma abordagem mais robusta
+    const periodText = adPeriodElement ? adPeriodElement.textContent.trim() : 'por período';
+    // Se adPeriodElement.textContent.trim() retornar "por semana." por exemplo, queremos "por semana"
+    const cleanPeriodText = periodText.endsWith('.') ? periodText.slice(0, -1) : periodText;
+    return `${priceText} ${cleanPeriodText}`;
+}
+
+// --- Lógica para o Modal de Proposta (proposalModal) ---
+
+// 1. Abre o modal de proposta quando o botão "Alugar" é clicado
+if (rentButton) {
+    rentButton.addEventListener('click', function () {
+        const currentAdPrice = getAdPriceAndPeriod();
+        proposedPriceInput.value = currentAdPrice; // Preenche o campo com o preço atual
+        messageInput.value = ''; // Limpa a mensagem anterior, se houver
+        proposalModal.style.display = 'flex'; // Torna o modal visível
+    });
+}
+
+// 2. Fecha o modal de proposta ao clicar no 'X'
+if (closeProposalModalButton) {
+    closeProposalModalButton.addEventListener('click', function () {
+        proposalModal.style.display = 'none'; // Esconde o modal
+    });
+}
+
+// 3. Fecha o modal de proposta ao clicar fora dele
+if (proposalModal) {
+    window.addEventListener('click', function (event) {
+        // Verifica se o clique foi no próprio overlay do modal, e não no conteúdo do modal
+        if (event.target === proposalModal) {
+            proposalModal.style.display = 'none'; // Esconde o modal
+        }
+    });
+}
+
+// 4. Envia a proposta e transiciona para o modal de confirmação
+if (proposalForm) {
+    proposalForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        const proposedPrice = proposedPriceInput.value;
+        const message = messageInput.value;
+
+        console.log('Proposta enviada:');
+        console.log('Preço Proposto:', proposedPrice);
+        console.log('Mensagem:', message);
+
+
+        proposalModal.style.display = 'none'; // Fecha o modal de proposta
+        confirmationModal.style.display = 'flex'; // Abre o modal de confirmação
+    });
+}
+
+// --- Lógica para o Modal de Confirmação (confirmationModal) ---
+
+// 5. Redireciona para page-principal.html ao clicar no 'X' do modal de confirmação
+if (closeConfirmationModalButton) {
+    closeConfirmationModalButton.addEventListener('click', function () {
+        window.location.href = 'page-principal.html';
+    });
+}
+
+// 6. Redireciona para page-principal.html ao clicar no botão "Ver mais anúncios"
+if (viewMoreAdsButton) {
+    viewMoreAdsButton.addEventListener('click', function () {
+        window.location.href = 'page-principal.html';
+    });
+}
+
+// 7. Redireciona para page-principal.html ao clicar fora do modal de confirmação
+if (confirmationModal) {
+    window.addEventListener('click', function (event) {
+        // Verifica se o clique foi no próprio overlay do modal de confirmação, e não no conteúdo
+        if (event.target === confirmationModal) {
+            window.location.href = 'page-principal.html';
+        }
+    });
+}
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

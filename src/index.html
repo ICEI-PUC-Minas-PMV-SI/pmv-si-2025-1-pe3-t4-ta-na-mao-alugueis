@@ -1,103 +1,723 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login - Tá Na Mão - Aluguéis</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #4CAF50; /* Verde */
-      display: flex;
-      height: 100vh;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .login-container {
-      width: 100%;
-      max-width: 360px;
-      padding: 30px;
-      background-color: #fbf9f7; /* Bege claro */
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .login-container img {
-      max-width: 120px;
-      margin-bottom: 15px;
-    }
-
-    h2 {
-      margin-bottom: 20px;
-      color: #333;
-    }
-
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background-color: #0077cc;
-      color: white;
-      font-size: 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #005fa3;
-    }
-
-    .error-message {
-      color: red;
-      margin-top: 10px;
-      font-size: 14px;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tá na Mão</title>
+    <link rel="icon" href="https://i.ibb.co/tp2q7J2G/imagem-2025-06-02-153413774.png" type="image/png">
+    <link rel="stylesheet" href="./style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 </head>
-<body>
-  <div class="login-container">
-    <img src="https://i.ibb.co/VYCg7qC1/imagem-2025-06-02-153413774.png" alt="Logo Tá na Mão" />
-    <h2>Tá Na Mão - Aluguéis</h2>
-    <input type="text" id="username" placeholder="Usuário" />
-    <input type="password" id="password" placeholder="Senha" />
-    <button onclick="login()">Entrar</button>
-    <div id="error-message" class="error-message" style="display: none;"></div>
-  </div>
 
-  <script>
-    function login() {
-      const usuarioCorreto = "Usuário";
-      const senhaCorreta = "123456";
+<style>
+    /* --- Estilos para o Modal de Aviso de Cadastro --- */
+#warningModal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 10000; /* Acima de todos os outros modais, se houver */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Overlay mais escuro */
+    justify-content: center;
+    align-items: center;
+}
 
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-      const errorMessage = document.getElementById("error-message");
+#warningModal .modal-content {
+    background-color: #fff;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    width: 90%;
+    max-width: 480px;
+    text-align: center;
+    position: relative;
+    animation: fadeInScale 0.4s ease-out; /* Animação de entrada mais chamativa */
+    border: 2px solid #00cf60; /* Borda de aviso */
+}
 
-      if (username === usuarioCorreto && password === senhaCorreta) {
-        window.location.href = "pageprincipal.html";
-      } else {
-        errorMessage.style.display = "block";
-        errorMessage.textContent = "Usuário ou senha incorretos.";
-      }
+#warningModal h2 {
+    color: #07ff30; /* Cor de aviso */
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+#warningModal p {
+    font-size: 1.1em;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+#warningModal p strong {
+    color: #d32f2f; /* Cor mais forte para a contagem */
+    font-size: 1.3em;
+}
+
+/* Animação para o modal de aviso */
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsividade para o modal de aviso */
+@media (max-width: 600px) {
+    #warningModal .modal-content {
+        padding: 25px;
+        font-size: 0.9em;
     }
-  </script>
+    #warningModal h2 {
+        font-size: 1.8em;
+    }
+    #warningModal p {
+        font-size: 1em;
+    }
+}
+
+.hero-banner-index {
+  display: flex;
+  align-items: center;
+  width: 1480px;
+  height: 500px;
+  background-color: #00a651;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 40px;
+}
+
+    /* --- Estilos para o Carrossel de Anúncios --- */
+.carousel-container {
+    position: relative; /* Necessário para posicionar setas de navegação */
+    width: 100%;
+    max-width: 320px; /* Largura para mostrar UM card por vez */
+    margin: 20px auto; /* Centraliza o carrossel */
+    overflow: hidden; /* CORTA TUDO QUE ESTIVER FORA DA ÁREA VISÍVEL */
+    border-radius: 8px;
+    
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.8s ease-in-out; /* Animação de transição suave */
+}
+
+/* Modificar o card-container para se adaptar ao carrossel */
+.carousel-track .card-container {
+    min-width: 100%; /* Cada card ocupa 100% da largura do track (que é igual ao container) */
+    box-sizing: border-box;
+    flex-shrink: 0; /* Impede que os cards encolham */
+    padding: 10px; /* Pequeno padding para espaçamento interno */
+    border: none; /* Remover borda, já que o container tem sombra */
+    box-shadow: none; /* Remover sombra individual */
+    margin: 0; /* Remover margem, espaçamento é feito pelo padding/gap do flex */
+    background-color: #fff; /* Fundo transparente, já que o container tem fundo */
+}
+
+/* Estilos para o conteúdo do card, se necessário ajustar */
+.carousel-track .card-container .card-image {
+    width: 100%;
+    height: 300px; /* Altura fixa para a imagem do carrossel */
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.carousel-track .card-container .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-track .card-container h4 {
+    font-size: 1.3em;
+    color: #28a745;
+    margin: 5px 0;
+}
+.carousel-track .card-container h5 {
+    font-size: 1em;
+    color: #333;
+    margin: 0 0 5px;
+}
+.carousel-track .card-container .location,
+.carousel-track .card-container .date {
+    font-size: 0.8em;
+    color: #777;
+    margin-bottom: 2px;
+}
+
+/* Estilos para setas de navegação (opcional, mas recomendado) */
+.carousel-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.5em;
+    border-radius: 50%;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-nav-button.prev {
+    left: 10px;
+}
+
+.carousel-nav-button.next {
+    right: 10px;
+}
+
+/* Media Queries para Responsividade (ajuste se necessário) */
+@media (max-width: 768px) {
+    .carousel-container {
+        max-width: 90%; /* Ocupa mais espaço em telas menores */
+    }
+}
+@media (max-width: 480px) {
+    .carousel-container {
+        margin: 15px auto;
+    }
+    .carousel-track .card-container .card-image {
+        height: 150px;
+    }
+    .carousel-nav-button {
+        padding: 8px 12px;
+        font-size: 1.2em;
+    }
+}
+</style>
+
+<body>
+    <header>
+        <div class="barra-superior-padrao">
+            <div class="logo">
+                <a href="page-principal.html">
+                    <img src="https://i.ibb.co/VYCg7qC1/imagem-2025-06-02-153413774.png" alt="Logo Tá na Mão"
+                        class="imagem-responsiva" width="100">
+                </a>
+            </div>
+
+            <div class="barra-de-pesquisa">
+                <input type="text" id="search-input" placeholder='Buscar "Carro"' autocomplete="off" />
+                <button> Buscar</button>
+                <div id="suggestions-container">
+                    <ul id="suggestions-list">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="botoes-de-navegacao">
+                <button id="plano-profissional-button"> Plano Profissional</button>
+                <button id="meus-anuncios-button"> Meus Anúncios</button>
+                <button id="chat-button"> Chat</button>
+                <button id="notificacoes-button"> Notificações</button>
+
+                <div class="botao-de-anuncio">
+                    <button id="cadastro-button"> Realizar Cadastro!</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal - O que deve ser alterado -->
+    <main>
+        <nav class="category-buttons-bar">
+            <ul>
+                <li>
+                    <a href="autos.html" class="category-button">
+                        <img src="https://img.icons8.com/?size=100&id=12684&format=png&color=000000"
+                            alt="Ícone de Autos">
+                        <span>Autos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ferramentas.html" class="category-button">
+                        <img src="https://img.icons8.com/?size=100&id=8064&format=png&color=000000"
+                            alt="Ícone de Ferramentas">
+                        <span>Ferramentas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="imoveis.html" class="category-button">
+                        <img src="https://img.icons8.com/?size=100&id=60579&format=png&color=000000"
+                            alt="Ícone de Imóveis">
+                        <span>Imóveis</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="esportes.html" class="category-button">
+                        <img src="https://img.icons8.com/?size=100&id=JpgK1f5rnXRS&format=png&color=000000"
+                            alt="Ícone de Esportes">
+                        <span>Esportes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="decoracoes.html" class="category-button">
+                        <img src="https://img.icons8.com/?size=100&id=66917&format=png&color=000000"
+                            alt="Ícone de Decorações de Festa">
+                        <span>Decorações de Festa</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="hero-banner-index">
+            <div class="hero-text">
+                <h2>Precisando de algo?
+                    <br> Não quer comprar?
+                </h2>
+            </div>
+
+            <div class="carousel-container" id="adCarousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="card-container">
+                        <div class="card-image">
+                            <a href="moto.html"><img
+                                    src="https://images.pexels.com/photos/13409345/pexels-photo-13409345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                                    alt="Moto Triumph Street 2014"></a>
+                        </div>
+                        <h4>R$ 180,00 por semana</h4>
+                        <h5>Moto Triumph Street 2014</h5>
+                        <p class="location">Belo Horizonte - MG</p>
+                        <p class="date">19/02/2025, 18:36</p>
+                    </div>
+        
+                    <div class="card-container">
+                        <div class="card-image">
+                            <a href="bola.html"><img
+                                    src="https://images.unsplash.com/photo-1634114441919-7636abb21cae?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    alt="Bola de Futebol"></a>
+                        </div>
+                        <h4>R$ 20,00 por dia</h4>
+                        <h5>Bola de Futebol</h5>
+                        <p class="location">Betim - MG</p>
+                        <p class="date">12/03/2025, 18:36</p>
+                    </div>
+        
+                    <div class="card-container">
+                        <div class="card-image">
+                            <a href="bolo.html"><img src="https://i.ibb.co/QFt3xYBb/bolo-frozen-52.jpg"
+                                    alt="Bolo Fake Frozen"></a>
+                        </div>
+                        <h4>R$ 80,00 por dia</h4>
+                        <h5>Bolo Fake Frozen</h5>
+                        <p class="location">Belo Horizonte - MG</p>
+                        <p class="date">12/04/2025, 08:50</p>
+                    </div>
+        
+                    <div class="card-container">
+                        <div class="card-image">
+                            <a href="escavadeira.html"><img
+                                    src="https://plus.unsplash.com/premium_photo-1682144338642-76e1cb277c90?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    alt="Mini Escavadeira"></a>
+                        </div>
+                        <h4>R$ 150,00 por hora</h4>
+                        <h5>Mini Escavadeira</h5>
+                        <p class="location">Belo Horizonte - MG</p>
+                        <p class="date">19/02/2025, 18:36</p>
+                    </div>
+        
+                    <div class="card-container">
+                        <div class="card-image">
+                            <a href="casa.html"><img
+                                    src="https://images.unsplash.com/photo-1668911494481-1643ee3e1235?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    alt="Casa"></a>
+                        </div>
+                        <h4>R$ 6500,00 por mês</h4>
+                        <h5>Casa em Condomínio</h5>
+                        <p class="location">Belo Horizonte - MG</p>
+                        <p class="date">12/04/2025, 13:26</p>
+                    </div>
+                </div>
+                <button class="carousel-nav-button prev" id="carouselPrev">&#10094;</button>
+                <button class="carousel-nav-button next" id="carouselNext">&#10095;</button>
+            </div>
+
+            <div class="hero-text">
+                <h2>É simples!
+                    <br>Alugue, use e depois devolva.
+                </h2>
+            </div>
+        </div>
+        <!-- <div class="container">
+            <h3>Recomendados para você</h3>
+        
+            <div class="carousel-container" id="adCarousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="card-container">
+                        <div class="card-image">
+                            <a href="moto.html"><img
+                                    src="https://images.pexels.com/photos/13409345/pexels-photo-13409345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                                    alt="Moto Triumph Street 2014"></a>
+                        </div>
+                        <h4>R$ 180,00 por semana</h4>
+                        <h5>Moto Triumph Street 2014</h5>
+                        <p class="location">Belo Horizonte - MG</p>
+                        <p class="date">19/02/2025, 18:36</p>
+                    </div>
+        
+                    <div class="card-container">
+                        <div class="card-image">
+                            <a href="bola.html"><img
+                                    src="https://images.unsplash.com/photo-1634114441919-7636abb21cae?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    alt="Bola de Futebol"></a>
+                        </div>
+                        <h4>R$ 20,00 por dia</h4>
+                        <h5>Bola de Futebol</h5>
+                        <p class="location">Betim - MG</p>
+                        <p class="date">12/03/2025, 18:36</p>
+                    </div>
+        
+                    <div class="card-container">
+                        <div class="card-image">
+                            <a href="bolo.html"><img src="https://i.ibb.co/QFt3xYBb/bolo-frozen-52.jpg"
+                                    alt="Bolo Fake Frozen"></a>
+                        </div>
+                        <h4>R$ 80,00 por dia</h4>
+                        <h5>Bolo Fake Frozen</h5>
+                        <p class="location">Belo Horizonte - MG</p>
+                        <p class="date">12/04/2025, 08:50</p>
+                    </div>
+        
+                    <div class="card-container">
+                        <div class="card-image">
+                            <a href="escavadeira.html"><img
+                                    src="https://plus.unsplash.com/premium_photo-1682144338642-76e1cb277c90?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    alt="Mini Escavadeira"></a>
+                        </div>
+                        <h4>R$ 150,00 por hora</h4>
+                        <h5>Mini Escavadeira</h5>
+                        <p class="location">Belo Horizonte - MG</p>
+                        <p class="date">19/02/2025, 18:36</p>
+                    </div>
+        
+                    <div class="card-container">
+                        <div class="card-image">
+                            <a href="casa.html"><img
+                                    src="https://images.unsplash.com/photo-1668911494481-1643ee3e1235?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    alt="Casa"></a>
+                        </div>
+                        <h4>R$ 6500,00 por mês</h4>
+                        <h5>Casa em Condomínio</h5>
+                        <p class="location">Belo Horizonte - MG</p>
+                        <p class="date">12/04/2025, 13:26</p>
+                    </div>
+                </div>
+                <button class="carousel-nav-button prev" id="carouselPrev">&#10094;</button>
+                <button class="carousel-nav-button next" id="carouselNext">&#10095;</button>
+            </div>
+        </div> -->
+    </main>
+
+    <div id="warningModal" class="modal">
+        <div class="modal-content">
+            <h2>É necessário Realizar o Cadastro!</h2>
+            <p>Para continuar a usar o site, por favor, realize o cadastro.</p>
+            <p>Você será direcionado à página de cadastro em <strong id="countdown">3</strong> segundos...</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="barra-inferior-padrao">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <div class="footer-section footer-navigation">
+                        <h4>Navegação</h4>
+                        <ul>
+                            <li><a href="plano-profissional.html">Plano Profissional</a></li>
+                            <li><a href="anuncio.html">Meus Anúncios</a></li>
+                            <li><a href="chat.html">Mensagens</a></li>
+                            <li><a href="notificacoes.html">Notificações</a></li>
+                            <li><a href="login.html">Realizar Cadastro!</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Tá na Mão</h3>
+                    <p>
+                        Sua plataforma para anunciar e encontrar serviços com facilidade. Junte-se à nossa comunidade!
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li>
+                            <p>Email: contato@tanamao.com.br</p>
+                        </li>
+                        <li>
+                            <p>Telefone: (31) 99999-8888</p>
+                        </li>
+                        <li>
+                            <p>Endereço: Rua do Exemplo, 1234 - Bairro Teste, Cidade - MG, Brasil</p>
+                        </li>
+                        <li>
+                            <p>Seg-Sex: 9h às 18h</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    </footer>
+    </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const warningModal = document.getElementById('warningModal');
+            const countdownElement = document.getElementById('countdown');
+            let countdownInterval;
+            let countdownSeconds = 5; // MUDANÇA AQUI: Valor inicial para a contagem
+            const redirectPage = 'login.html'; // Defina para onde redirecionar (login.html ou cadastro.html)
+    
+            // IDs de elementos que DEVEM ser IGNORADOS por este script (já levam para o cadastro/login)
+            const ignoredElements = [
+                'cadastro-button', // Botão "Realizar Cadastro!"
+                'user-login-button', // Botão "Usuário ⌄"
+                // Adicione IDs de outros elementos que já são o destino de login/cadastro
+                // e não devem disparar este modal de aviso.
+            ];
+    
+            // Função para iniciar a contagem regressiva e redirecionar
+            function startCountdownAndRedirect() {
+                countdownElement.textContent = countdownSeconds;
+                countdownInterval = setInterval(() => {
+                    countdownSeconds--;
+                    countdownElement.textContent = countdownSeconds;
+                    if (countdownSeconds <= 0) {
+                        clearInterval(countdownInterval);
+                        window.location.href = redirectPage;
+                    }
+                }, 1000); // Atualiza a cada 1 segundo
+            }
+    
+            // Função para exibir o modal de aviso
+            function showWarningModal() {
+                // Reseta a contagem e garante que o modal está configurado corretamente
+                countdownSeconds = 5; // MUDANÇA AQUI: Reinicia a contagem para 5 segundos
+                countdownElement.textContent = countdownSeconds;
+                clearInterval(countdownInterval); // Limpa qualquer intervalo anterior
+    
+                warningModal.style.display = 'flex'; // Exibe o modal
+                startCountdownAndRedirect(); // Inicia a contagem
+            }
+    
+            // Função que verifica se um clique deve ser interceptado
+            function shouldInterceptClick(targetElement) {
+                // Percorre a árvore de pais para ver se o clique foi em um elemento a ser ignorado
+                let current = targetElement;
+                while (current && current !== document.body) {
+                    // Ignorar cliques dentro do próprio modal de aviso
+                    if (current === warningModal) {
+                        return false;
+                    }
+                    // Ignorar elementos específicos (botões de cadastro/login, etc.)
+                    if (current.id && ignoredElements.includes(current.id)) {
+                        return false;
+                    }
+                    // Ignorar links que já apontam explicitamente para login.html
+                    if (current.tagName === 'A' && current.href.endsWith('login.html')) {
+                        return false;
+                    }
+                    // Ignorar links da logo se já tiverem redirecionamento direto
+                    if (current.tagName === 'A' && current.closest('.logo') && current.href.endsWith('login.html')) {
+                        return false;
+                    }
+                    current = current.parentElement;
+                }
+                return true; // Se chegou aqui, o clique deve ser interceptado
+            }
+    
+            // Intercepta todos os cliques na fase de captura
+            document.addEventListener('click', function(event) {
+                const target = event.target;
+    
+                // Não interceptar se o modal de aviso já estiver visível
+                if (warningModal.style.display === 'flex') {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    return;
+                }
+    
+                // Verifica se o clique deve ser interceptado (não em elementos ignorados)
+                if (shouldInterceptClick(target)) {
+                    // Interceptar apenas links e botões, ou elementos que se comportam como eles
+                    if (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('a') || target.closest('button')) {
+                        event.preventDefault(); // Impede a navegação/ação padrão
+                        event.stopPropagation(); // Impede a propagação do clique
+                        showWarningModal(); // Mostra o modal de aviso
+                    }
+                }
+            }, true); // O 'true' garante que este listener é executado na fase de captura
+    
+            // Intercepta submissões de formulários (ex: apertar Enter na barra de busca)
+            document.addEventListener('submit', function(event) {
+                // Não interceptar se o modal de aviso já estiver visível
+                if (warningModal.style.display === 'flex') {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    return;
+                }
+    
+                const targetForm = event.target;
+                // Exemplo: se houver um formulário de contato que não precise de login, adicione uma exceção aqui.
+                // if (targetForm.id === 'contact-form') { return; }
+    
+                event.preventDefault(); // Impede a submissão do formulário
+                event.stopPropagation();
+                showWarningModal(); // Mostra o modal de aviso
+            }, true); // Fase de captura para submissões
+        });
+    </script>
+    
+    <script>
+        // --- Lógica do Carrossel de Anúncios ---
+const carouselTrack = document.getElementById('carouselTrack');
+const carouselContainer = document.getElementById('adCarousel');
+const carouselItems = carouselTrack ? Array.from(carouselTrack.children) : [];
+const prevButton = document.getElementById('carouselPrev');
+const nextButton = document.getElementById('carouselNext');
+
+let currentIndex = 0;
+let carouselInterval;
+const intervalTime = 3000; 
+
+function updateCarousel() {
+    if (!carouselTrack || carouselItems.length === 0) return;
+
+    const offset = -currentIndex * 100; // Calcula o offset para a rolagem
+    carouselTrack.style.transform = `translateX(${offset}%)`;
+}
+
+function showNextItem() {
+    currentIndex = (currentIndex + 1) % carouselItems.length;
+    updateCarousel();
+}
+
+function showPrevItem() {
+    currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+    updateCarousel();
+}
+
+function startCarousel() {
+    if (carouselItems.length > 1) { // Só inicia se houver mais de um item para rolar
+        carouselInterval = setInterval(showNextItem, intervalTime);
+    }
+}
+
+function stopCarousel() {
+    clearInterval(carouselInterval);
+}
+
+// Inicia o carrossel quando a página carrega
+startCarousel();
+
+// Pausa o carrossel ao passar o mouse sobre ele
+if (carouselContainer) {
+    carouselContainer.addEventListener('mouseenter', stopCarousel);
+    carouselContainer.addEventListener('mouseleave', startCarousel);
+}
+
+// Botões de navegação manual
+if (prevButton) {
+    prevButton.addEventListener('click', () => {
+        stopCarousel(); // Para a rolagem automática
+        showPrevItem();
+        startCarousel(); // Reinicia após a rolagem manual
+    });
+}
+
+if (nextButton) {
+    nextButton.addEventListener('click', () => {
+        stopCarousel(); // Para a rolagem automática
+        showNextItem();
+        startCarousel(); // Reinicia após a rolagem manual
+    });
+}
+
+// --- Fim da Lógica do Carrossel de Anúncios ---
+
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Seleciona todos os links (<a>) e botões (<button>) na página
+            const allInteractiveElements = document.querySelectorAll('a, button');
+    
+            // Itera sobre cada elemento encontrado
+            allInteractiveElements.forEach(element => {
+                const exceptions = ['user-login-button', 'cadastro-button', 'search-button', 'search-button-recommendations']; // Adicione IDs de botões que devem ser ignorados.
+    
+                if (element.tagName === 'A' && element.getAttribute('href') === 'login.html') {
+                    return; // Já aponta para login, não precisa de listener extra
+                }
+                if (element.tagName === 'BUTTON' && exceptions.includes(element.id)) {
+                    return; // Botões específicos que não devem ser interceptados por este script
+                }
+                if (element.tagName === 'A' && element.getAttribute('href') && element.getAttribute('href').includes('page-principal.html')) {
+                    element.setAttribute('href', 'login.html'); // Garante que o logo do header e outros redirecionem.
+                    return;
+                }
+    
+    
+                // Adiciona um listener de clique a cada elemento
+                element.addEventListener('click', function(event) {
+                    // Impede a ação padrão do link ou botão
+                    event.preventDefault();
+                    event.stopPropagation(); // Evita que o evento se propague para elementos pai
+    
+                    // Redireciona para a página de login
+                    window.location.href = 'login.html';
+                });
+            });
+    
+            // TRATAMENTO EXTRA para as barras de pesquisa
+            // Isso garante que mesmo o ENTER ou o clique no botão da barra de pesquisa redirecionem
+            const searchInputHeader = document.getElementById('search-input');
+            const searchButtonHeader = document.querySelector('.barra-de-pesquisa button'); // Botão Buscar do header
+    
+            const searchInputRecommendations = document.getElementById('search-input-recommendations');
+            const searchButtonRecommendations = document.getElementById('search-button-recommendations'); // Botão Buscar da seção recomendados
+    
+            if (searchInputHeader) {
+                searchInputHeader.addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        window.location.href = 'login.html';
+                    }
+                });
+            }
+            if (searchButtonHeader) {
+                 searchButtonHeader.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    window.location.href = 'login.html';
+                });
+            }
+    
+            if (searchInputRecommendations) {
+                searchInputRecommendations.addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        window.location.href = 'login.html';
+                    }
+                });
+            }
+            if (searchButtonRecommendations) {
+                searchButtonRecommendations.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    window.location.href = 'login.html';
+                });
+            }
+        });
+    </script>
+    <script src="scriptbloqueio.js"></script>
 </body>
+
 </html>
