@@ -12,7 +12,6 @@ A solução visa atender a uma demanda crescente por alternativas de consumo mai
 
 ## Integrantes
 
-* João Paulo Candido Faria Vieira 
 * José Alexandre Santos Barbosa 
 * Luís Filipe Silva de Oliveira 
 * Sebastiao Felipe de Oliveira Barros 
