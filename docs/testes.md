@@ -58,9 +58,7 @@ Localizar Anúncio de "Moto Triumph Street 2014"
 
 |**Caminhos**|**Sucesso na Execução da Tarefa**|**Anotações / Observações**|
 |:---:|:---:|:---:|
-|Na Página Principal -> 
-
-(Opção 1: Pesquisa) Usa barra de pesquisa (header ou Recomendados) -> Digita "Moto Triumph Street" (ou "Moto") -> Clica "Buscar" / Seleciona sugestão -> Página de resultados -> Clica no anúncio da moto. (Opção 2: Carrossel) Aguarda carrossel ou usa setas -> Clica no anúncio da moto. (Opção 3: Categoria) Clica em "Autos" (barra de categorias) -> Encontra e clica no anúncio da moto. |0<br/>Não completou<br/>0<br/>Completou com dificuldade ou ajuda<br/>1<br/>Completou facilmente||
+|Na Página Principal ->(Opção 1: Pesquisa) Usa barra de pesquisa (header ou Recomendados) -> Digita "Moto Triumph Street" (ou "Moto") -> Clica "Buscar" / Seleciona sugestão -> Página de resultados -> Clica no anúncio da moto. (Opção 2: Carrossel) Aguarda carrossel ou usa setas -> Clica no anúncio da moto. (Opção 3: Categoria) Clica em "Autos" (barra de categorias) -> Encontra e clica no anúncio da moto. |0<br/>Não completou<br/>0<br/>Completou com dificuldade ou ajuda<br/>1<br/>Completou facilmente||
 
 ---
 **Tarefa 3**
@@ -99,6 +97,7 @@ Enviar Anúncio
 **Pergunta 7:** "Você acha que este sistema é atual? Por quê?"
 
 **Resposta:**  “É bastante atual, e acrescento que falta isso no mercado, nunca tinha me deparado com um sistema voltado de fato pra isso.”
+
 ---
 **Pergunta 8:** "O que você mais gostou neste sistema?"
 
@@ -212,6 +211,7 @@ Enviar Anúncio
 **Pergunta 7:** "Você acha que este sistema é atual? Por quê?"
 
 **Resposta:** “Sim, pois achei o design e as funcionalidades visualmente modernas.”
+
 ---
 **Pergunta 8:** "O que você mais gostou neste sistema?"
 
@@ -325,6 +325,7 @@ Enviar Anúncio
 **Pergunta 7:** "Você acha que este sistema é atual? Por quê?"
 
 **Resposta:** “Acho sim, porque é uma ideia inovadora. Gostei bastante.”
+
 ---
 **Pergunta 8:** "O que você mais gostou neste sistema?"
 
@@ -434,6 +435,7 @@ Enviar Anúncio
 **Pergunta 7:** "Você acha que este sistema é atual? Por quê?"
 
 **Resposta:** “Sim, a ideia de economia compartilhada está em alta, e o sistema segue tendências modernas de design e funcionalidade para esse tipo de aplicação.”
+
 ---
 **Pergunta 8:** "O que você mais gostou neste sistema?"
 
